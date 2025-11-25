@@ -1,20 +1,30 @@
-﻿using System.Drawing;
-using System.Windows.Forms;
+﻿using AlgorithmAssignment.Core;
 
 namespace AlgorithmAssignment.UI
 {
     public class TerrainGridControl : Control
     {
-        private int[,] terrainMap;
+        private TerrainMap? terrainMap;
+        private List<Coordinates>? path;
 
         private readonly Dictionary<int, Color> terrainColor;
 
-        public int[,] TerrainMap
+        public TerrainMap? TerrainMap
         {
             get => terrainMap;
             set
             {
                 terrainMap = value;
+                Invalidate(); // Trigger repaint
+            }
+        }
+
+        public List<Coordinates>? Path
+        {
+            get => path;
+            set
+            {
+                path = value;
                 Invalidate(); // Trigger repaint
             }
         }
@@ -30,15 +40,6 @@ namespace AlgorithmAssignment.UI
                 { 2, Color.Green }, // 2: Wood
                 { 3, Color.LightBlue }, // 3: Water
             };
-
-            // Dummy grid
-            terrainMap = new int[,]
-            {
-                { 0, 1, 2, 3 },
-                { 1, 2, 3, 0 },
-                { 2, 3, 0, 1 },
-                { 3, 0, 1, 2 },
-            };
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -50,8 +51,8 @@ namespace AlgorithmAssignment.UI
             if (terrainMap == null) return;
 
             // Define the rows and columns
-            int rows = terrainMap.GetLength(0);
-            int cols = terrainMap.GetLength(1);
+            int rows = terrainMap.Rows;
+            int cols = terrainMap.Columns;
 
             // If there are no rows or columns, don't draw anything
             if (rows == 0 || cols == 0) return;
@@ -80,7 +81,7 @@ namespace AlgorithmAssignment.UI
                 {
                     for (int x = 0; x < cols; x++)
                     {
-                        int terrainValue = terrainMap[y, x];
+                        int terrainValue = terrainMap.Grid[y, x];
 
                         if (!terrainColor.TryGetValue(terrainValue, out Color color))
                         {

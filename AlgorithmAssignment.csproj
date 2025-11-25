@@ -10,9 +10,4 @@
 	<ForceDesignerDpiUnaware>true</ForceDesignerDpiUnaware>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Algorithms\" />
-    <Folder Include="Utils\" />
-  </ItemGroup>
-
 </Project>

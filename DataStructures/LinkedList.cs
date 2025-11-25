@@ -114,7 +114,7 @@
             Element<T> newElement = new Element<T>(data);
 
             // Special case: inserting at the front or into an empty list
-            if (_head == null || data.CompareTo(_head.Data) < 0)
+            if (_head == null || comparable.CompareTo(_head.Data) < 0)
             {
                 newElement.Next = _head;
                 _head = newElement;
@@ -129,7 +129,7 @@
 
             // General case: find the correct position to insert
             Element<T>? current = _head;
-            while (current.Next != null && current.Next.Data.CompareTo(data) < 0)
+            while (current.Next != null && ((IComparable)current.Next.Data).CompareTo(data) < 0)
             {
                 current = current.Next;
             }

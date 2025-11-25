@@ -1,8 +1,10 @@
+using AlgorithmAssignment.Core;
+
 namespace AlgorithmAssignment
 {
-    public partial class Form1 : Form
+    public partial class UIForm : Form
     {
-        public Form1()
+        public UIForm()
         {
             InitializeComponent();
         }
@@ -19,7 +21,7 @@ namespace AlgorithmAssignment
                 {
                     try
                     {
-                        int[,] map = LoadTerrainFromFile(ofd.FileName);
+                        TerrainMap map = LoadTerrainFromFile(ofd.FileName);
                         TerrainGrid.TerrainMap = map;
                     }
                     catch (Exception ex)
@@ -34,7 +36,7 @@ namespace AlgorithmAssignment
             }
         }
 
-        private int[,] LoadTerrainFromFile(string filePath)
+        private TerrainMap LoadTerrainFromFile(string filePath)
         {
             // Dummy implementation
             int[,] map = new int[,]
@@ -43,7 +45,10 @@ namespace AlgorithmAssignment
                 { 2, 3 }
             };
 
-            return map;
+            Coordinates start = new Coordinates(0, 0);
+            Coordinates goal = new Coordinates(3, 3);
+
+            return new TerrainMap(map, start, goal);
         }
     }
 }
