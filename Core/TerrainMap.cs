@@ -2,9 +2,9 @@
 {
     public class TerrainMap
     {
+        public int Rows { get; }
+        public int Columns { get; }
         public int[,] Grid { get; }
-        public int Rows => Grid.GetLength(0);
-        public int Columns => Grid.GetLength(1);
 
         public Coordinates Start { get; }
         public Coordinates Goal { get; }
@@ -12,6 +12,9 @@
         public TerrainMap(int[,] grid, Coordinates start, Coordinates goal)
         {
             Grid = grid;
+            Rows = grid.GetLength(0);
+            Columns = grid.GetLength(1);
+
             Start = start;
             Goal = goal;
         }

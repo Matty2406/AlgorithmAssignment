@@ -1,6 +1,6 @@
 ﻿namespace AlgorithmAssignment.Core
 {
-    public interface IAlgorithm
+    public interface IPathFinder
     {
         List<Coordinates> Run(TerrainMap map);
     }

@@ -3,7 +3,7 @@ using AlgorithmAssignment.DataStructures;
 
 namespace AlgorithmAssignment.Algorithms
 {
-    public class BreadthFirst : IAlgorithm
+    public class BreadthFirst : IPathFinder
     {
         public List<Coordinates> Run(TerrainMap map)
         {

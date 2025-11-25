@@ -21,7 +21,7 @@
         /// Removes and returns the item at the front of the collection.
         /// </summary>
         /// <returns>The item at the front of the collection.</returns>
-        public T Pop()
+        public T? Pop()
         {
             return _list.PopFrontValue();
         }

@@ -7,6 +7,8 @@
     {
         BreadthFirst,
         DepthFirst,
+        HillClimbing,
+        BestFirst,
         Dijkstra,
         AStar
     }

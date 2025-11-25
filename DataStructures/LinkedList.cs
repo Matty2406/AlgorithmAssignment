@@ -173,10 +173,9 @@
         /// Removes and returns the first element from the list.
         /// </summary>
         /// <returns>
-        /// Returns the data of the removed element.
+        /// Returns the data of the removed element. If the list is empty, returns the default value of type T.
         /// </returns>
-        /// <exception cref="InvalidOperationException"></exception>
-        public T PopFrontValue()
+        public T? PopFrontValue()
         {
             Element<T>? oldHead = _head;
 
@@ -194,7 +193,7 @@
             }
             else
             {
-                throw new InvalidOperationException("List is empty.");
+                return default;
             }
         }
 

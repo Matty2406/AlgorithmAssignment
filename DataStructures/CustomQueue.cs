@@ -10,8 +10,7 @@
         /// <summary>
         /// Adds an item to the end of the queue.
         /// </summary>
-        /// <remarks>The item is added to the back of the queue, maintaining the FIFO (first-in,
-        /// first-out) order.</remarks>
+        /// <remarks>The item is added to the back of the queue, maintaining the FIFO (first-in, first-out) order.</remarks>
         /// <param name="item">The item to add to the queue.</param>
         public void Enqueue(T item)
         {
@@ -21,11 +20,9 @@
         /// <summary>
         /// Removes and returns the item at the front of the queue.
         /// </summary>
-        /// <remarks>This method retrieves the first item in the queue and removes it from the collection.
-        /// If the queue is empty, the behavior depends on the implementation of the underlying data
-        /// structure.</remarks>
+        /// <remarks>This method retrieves the first item in the queue and removes it from the collection.</remarks>
         /// <returns>The item at the front of the queue.</returns>
-        public T Dequeue()
+        public T? Dequeue()
         {
             return _list.PopFrontValue();
         }

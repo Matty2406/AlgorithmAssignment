@@ -1,25 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AlgorithmAssignment.Algorithms;
 
 namespace AlgorithmAssignment.Core
 {
     public static class AlgorithmFactory
     {
-        public static IAlgorithm Create(AlgorithmType type)
+        public static IPathFinder Create(AlgorithmType type)
         {
             switch (type)
             {
                 case AlgorithmType.BreadthFirst:
-                    break;
+                    return new BreadthFirst();
                 case AlgorithmType.DepthFirst:
-                    break;
-                case AlgorithmType.Dijkstra:
-                    break;
-                case AlgorithmType.AStar:
-                    break;
+                    return new DepthFirst();
                 default:
                     throw new ArgumentException("Unknown algorithm type", nameof(type));
             }
