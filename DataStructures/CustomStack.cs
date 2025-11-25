@@ -11,8 +11,6 @@
         /// <summary>
         /// Adds an item to the top of the stack.
         /// </summary>
-        /// <remarks>This method inserts the specified item at the top of the stack, making it the most
-        /// recently added element.</remarks>
         /// <param name="item">The item to add to the stack. Cannot be null.</param>
         public void Push(T item)
         {
