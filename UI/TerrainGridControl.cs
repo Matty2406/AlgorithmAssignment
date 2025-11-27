@@ -1,4 +1,5 @@
 ﻿using AlgorithmAssignment.Core;
+using System.Drawing;
 
 namespace AlgorithmAssignment.UI
 {
@@ -73,7 +74,6 @@ namespace AlgorithmAssignment.UI
             if (cellSize <= 0) return;
 
             // Draw each cell with the appropriate color
-
             using (var pen = new Pen(Color.Black))
             {
                 // Loop through each cell in the terrain map
@@ -100,6 +100,47 @@ namespace AlgorithmAssignment.UI
 
                         e.Graphics.DrawRectangle(pen, rect);
                     }
+                }
+            }
+
+            // If path exists, draw path
+            if (Path != null)
+            {
+                using (var brush = new SolidBrush(Color.Yellow))
+                {
+                    foreach (var p in Path)
+                    {
+                        e.Graphics.FillRectangle(
+                            brush,
+                            p.Column * cellSize,
+                            p.Row * cellSize,
+                            cellSize,
+                            cellSize
+                        );
+                    }
+                }
+
+                // Set start and goal as red:
+                using (var startBrush = new SolidBrush(Color.Red))
+                {
+                    e.Graphics.FillRectangle(
+                        startBrush,
+                        terrainMap.Start.Column * cellSize,
+                        terrainMap.Start.Row * cellSize,
+                        cellSize,
+                        cellSize
+                    );
+                }
+
+                using (var goalBrush = new SolidBrush(Color.Blue))
+                {
+                    e.Graphics.FillRectangle(
+                        goalBrush,
+                        terrainMap.Goal.Column * cellSize,
+                        terrainMap.Goal.Row * cellSize,
+                        cellSize,
+                        cellSize
+                    );
                 }
             }
         }
