@@ -43,6 +43,11 @@ namespace AlgorithmAssignment.UI
             };
         }
 
+        public void ClearPath()
+        {
+            path = null;
+        }
+
         protected override void OnPaint(PaintEventArgs e)
         {
             // Call the base class OnPaint

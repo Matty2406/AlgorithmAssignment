@@ -36,6 +36,7 @@ namespace AlgorithmAssignment
 
                         TerrainMap map = LoadTerrainFromFile(ofd.FileName);
                         CurrentMap = map;
+                        TerrainGrid.ClearPath();
                         TerrainGrid.TerrainMap = map;
                     }
                     catch (Exception ex)

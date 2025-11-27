@@ -1,6 +1,5 @@
 ﻿namespace AlgorithmAssignment.DataStructures
 {
-
     /// <summary>
     /// This is the class used for all operations. It was made during lessons and added to this project.
     /// </summary>
@@ -105,9 +104,9 @@
         /// </param>
         public void PushSorted(T data)
         {
-            if (data is not IComparable comparable)
+            if (data is not IComparable<T> comparable)
             {
-                throw new InvalidOperationException("Data type must implement IComparable.");
+                throw new InvalidOperationException("Data type must implement IComparable<T>.");
             }
 
             // Allocate a new element
@@ -129,7 +128,7 @@
 
             // General case: find the correct position to insert
             Element<T>? current = _head;
-            while (current.Next != null && ((IComparable)current.Next.Data).CompareTo(data) < 0)
+            while (current.Next != null && ((IComparable<T>)current.Next.Data).CompareTo(data) < 0)
             {
                 current = current.Next;
             }

@@ -22,7 +22,7 @@
         /// Removes and returns the minimum value from the collection.
         /// </summary>
         /// <returns>The minimum value from the collection.</returns>
-        public T? RemoveMin()
+        public T? Dequeue()
         {
             return _list.PopFrontValue();
         }
