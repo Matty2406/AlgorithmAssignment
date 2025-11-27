@@ -6,6 +6,8 @@ namespace AlgorithmAssignment
     {
         private TerrainMap? CurrentMap;
 
+        private string CurrentMapFileName = "";
+
         public UIForm()
         {
             InitializeComponent();
@@ -30,6 +32,8 @@ namespace AlgorithmAssignment
                 {
                     try
                     {
+                        CurrentMapFileName = Path.GetFileNameWithoutExtension(ofd.FileName);
+
                         TerrainMap map = LoadTerrainFromFile(ofd.FileName);
                         CurrentMap = map;
                         TerrainGrid.TerrainMap = map;
@@ -126,7 +130,9 @@ namespace AlgorithmAssignment
 
                 // Display path
                 TerrainGrid.Path = path;
-                TerrainGrid.Invalidate();
+
+                // Write path to file
+                WriteToFile(path, CurrentMapFileName, pathFinder);
             }
             catch (Exception ex)
             {
@@ -150,6 +156,35 @@ namespace AlgorithmAssignment
                 5 => AlgorithmType.AStar,
                 _ => throw new Exception("No algorithm selected.")
             };
+        }
+
+        private static void WriteToFile(List<Coordinates> path, string mapName, IPathFinder pathFinder)
+        {
+            if (path == null || path.Count == 0)
+            {
+                MessageBox.Show("No path found to write to file.");
+                return;
+            }
+
+            // Create output file name
+            string algorithmName = pathFinder.GetType().Name.ToLower();
+
+            string fileName = $"{mapName}Path_{algorithmName}.txt";
+            string filePath = Path.Combine(Environment.CurrentDirectory, fileName);
+
+            using (StreamWriter writer = new StreamWriter(filePath))
+            {
+                // Write each coordinate in the path to the file
+                foreach (var step in path)
+                {
+                    writer.WriteLine(step.ToString());
+                }
+
+                // For A*, write number of sorts
+                
+            }
+
+            MessageBox.Show($"Path written to file: {filePath}");
         }
     }
 }

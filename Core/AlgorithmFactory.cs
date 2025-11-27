@@ -12,6 +12,8 @@ namespace AlgorithmAssignment.Core
                     return new BreadthFirst();
                 case AlgorithmType.DepthFirst:
                     return new DepthFirst();
+                case AlgorithmType.HillClimbing:
+                    return new HillClimbing();
                 default:
                     throw new ArgumentException("Unknown algorithm type", nameof(type));
             }

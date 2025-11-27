@@ -3,61 +3,75 @@ using AlgorithmAssignment.DataStructures;
 
 namespace AlgorithmAssignment.Algorithms
 {
-    public class DepthFirst : IPathFinder
+    public class HillClimbing : IPathFinder
     {
         public List<Coordinates> Run(TerrainMap map)
         {
-            // Implementation of Depth First Search...
+            // Implementation of Hill Climbing algorithm...
 
-            // Depth maximum limit
+            // Depth limit for backtracking hill climbing
             Dictionary<Coordinates, int> depth = new();
             const int MAX_DEPTH = 1000;
 
-            // Create Open and Closed List
+            // Create open list, closed list, and tmp list
             CustomStack<Coordinates> openList = new();
             HashSet<Coordinates> closedList = new();
+            List<(Coordinates coord, int cost)> tmpList = new();
 
             // Track the path
             Dictionary<Coordinates, Coordinates> parent = new();
 
-            // Push the initial state to open list
+            // Push the initial state onto the open list
             openList.Push(map.Start);
             depth[map.Start] = 0;
 
-            // Until goal state is reached or open list is empty
+            // Until goal is found or open list is empty
             while (!openList.IsEmpty())
             {
-                // Pop first element from open list
+                // Pop the first element from the open list
                 Coordinates current = openList.Pop();
-                // If open list was empty, return failure and exit
+                // If it was empty, return failure
 
-                // If current state is goal state, return success and exit
+                // If the goal is found, return success
                 if (current.Equals(map.Goal))
                 {
                     return ReconstructPath(parent, map.Start, map.Goal);
                 }
 
-                // For each rule that matches current state
-                foreach (var next in MovementRules.GetReverseNeighbors(current))
+                // Add current state to closed list
+                closedList.Add(current);
+
+                // For each rule that can match the current state
+                foreach (var next in MovementRules.GetNeighbors(current))
                 {
-                    // Apply rule to generate next state
+                    // Apply rule to generate the next state
                     if (map.InBound(next) && !map.IsWall(next) && !closedList.Contains(next))
                     {
                         // Check depth limit
                         if (depth[current] + 1 > MAX_DEPTH) continue;
                         depth[next] = depth[current] + 1;
 
-                        // If next state is not in closed list, add to open list
-                        parent[next] = current;
-                        openList.Push(next);
+                        // And calculate heuristic cost
+                        int h = Heuristics.ManhattanDistance(next, map.Goal);
+                        tmpList.Add((next, h));
                     }
                 }
 
-                // Add current state to closed list
-                closedList.Add(current);
+                // Sort tmp list by cost
+                tmpList.Sort((a, b) => a.cost.CompareTo(b.cost));
+
+                // Add list to open list
+                for (int i = tmpList.Count - 1; i >= 0; i--)
+                {
+                    openList.Push(tmpList[i].coord);
+                    parent[tmpList[i].coord] = current;
+                }
+
+                // Clear tmp list
+                tmpList.Clear();
             }
 
-            // If open list is empty, return failure
+            // If we reach here, return failure
             return new List<Coordinates>();
         }
 
