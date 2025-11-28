@@ -153,7 +153,7 @@ namespace AlgorithmAssignment
                 1 => AlgorithmType.DepthFirst,
                 2 => AlgorithmType.HillClimbing,
                 3 => AlgorithmType.BestFirst,
-                4 => AlgorithmType.Dijkstra,
+                4 => AlgorithmType.Dijkstras,
                 5 => AlgorithmType.AStar,
                 _ => throw new Exception("No algorithm selected.")
             };
@@ -182,7 +182,10 @@ namespace AlgorithmAssignment
                 }
 
                 // For A*, write number of sorts
-                
+                if (pathFinder is Algorithms.AStar aStar)
+                {
+                    writer.WriteLine(aStar.SortCounts);
+                }
             }
 
             MessageBox.Show($"Path written to file: {filePath}");

@@ -27,6 +27,11 @@
             return _list.PopFrontValue();
         }
 
+        public void Remove(T item)
+        {
+            _list.RemoveFirst(item);
+        }
+
         /// <summary>
         /// Determines whether the collection is empty.
         /// </summary>

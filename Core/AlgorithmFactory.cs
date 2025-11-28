@@ -16,6 +16,10 @@ namespace AlgorithmAssignment.Core
                     return new HillClimbing();
                 case AlgorithmType.BestFirst:
                     return new BestFirst();
+                case AlgorithmType.Dijkstras:
+                    return new Dijkstras();
+                case AlgorithmType.AStar:
+                    return new AStar();
                 default:
                     throw new ArgumentException("Unknown algorithm type", nameof(type));
             }

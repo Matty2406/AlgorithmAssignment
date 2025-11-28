@@ -9,7 +9,7 @@
         DepthFirst,
         HillClimbing,
         BestFirst,
-        Dijkstra,
+        Dijkstras,
         AStar
     }
 }
