@@ -15,7 +15,7 @@ namespace AlgorithmAssignment.Algorithms
 
             // Create Open and Closed List
             CustomStack<Coordinates> openList = new();
-            HashSet<Coordinates> closedList = new();
+            DataStructures.LinkedList<Coordinates> closedList = new();
 
             // Track the path
             Dictionary<Coordinates, Coordinates> parent = new();
@@ -54,7 +54,7 @@ namespace AlgorithmAssignment.Algorithms
                 }
 
                 // Add current state to closed list
-                closedList.Add(current);
+                closedList.PushBack(current);
             }
 
             // If open list is empty, return failure

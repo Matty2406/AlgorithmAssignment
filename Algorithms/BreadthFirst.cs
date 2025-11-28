@@ -11,7 +11,7 @@ namespace AlgorithmAssignment.Algorithms
 
             // Create the Open and Closed lists
             CustomQueue<Coordinates> openList = new();
-            HashSet<Coordinates> closedList = new();
+            DataStructures.LinkedList<Coordinates> closedList = new();
 
             // Track the path
             Dictionary<Coordinates, Coordinates> parent = new();
@@ -43,7 +43,7 @@ namespace AlgorithmAssignment.Algorithms
                 }
 
                 // Add current to Closed List
-                closedList.Add(current);
+                closedList.PushBack(current);
             }
 
             // If the goal was not reached, return an empty path

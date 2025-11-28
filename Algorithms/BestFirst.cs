@@ -12,7 +12,7 @@ namespace AlgorithmAssignment.Algorithms
 
             // Create an open list and closed list
             CustomPriorityQueue<CostNode> openList = new();
-            HashSet<Coordinates> closedList = new();
+            DataStructures.LinkedList<Coordinates> closedList = new();
 
             // Add the start node to the open list, set parent to null, and calculate heuristic
             int h = Heuristics.ManhattanDistance(map.Start, map.Goal);
@@ -46,7 +46,7 @@ namespace AlgorithmAssignment.Algorithms
                 }
 
                 // Add current to closed list
-                closedList.Add(current.Position);
+                closedList.PushBack(current.Position);
             }
 
             // If goal not found, return failure

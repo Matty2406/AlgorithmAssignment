@@ -15,7 +15,7 @@ namespace AlgorithmAssignment.Algorithms
 
             // Create open list, closed list, and tmp list
             CustomStack<Coordinates> openList = new();
-            HashSet<Coordinates> closedList = new();
+            DataStructures.LinkedList<Coordinates> closedList = new();
             List<(Coordinates coord, int cost)> tmpList = new();
 
             // Track the path
@@ -39,7 +39,7 @@ namespace AlgorithmAssignment.Algorithms
                 }
 
                 // Add current state to closed list
-                closedList.Add(current);
+                closedList.PushBack(current);
 
                 // For each rule that can match the current state
                 foreach (var next in MovementRules.GetNeighbors(current))
